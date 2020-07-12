@@ -1,0 +1,2041 @@
+{
+	"info": {
+		"_postman_id": "6eed2113-dc43-4337-b83b-d312e39df6d9",
+		"name": "concierge-app-test",
+		"description": "This collection tests Concierge-app's api endpoints with role based access control",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "/restaurants-public",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1d49229c-a050-4fa3-b04d-fc1ad7080ded",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"value contains restaurants array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.restaurants).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}//restaurants-public",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"",
+								"restaurants-public"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f1dae3cc-77c9-4ea1-94f5-bbb639f7e5b5",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa5caad8-ff4e-4ff1-9821-b4592a1d630a",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ceb40967-4d47-4a24-a6bf-e26a3769aa31",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Nusret\",\n    \"cuisine_id\": 5,\n    \"location_id\": 11,\n    \"age_policy_id\": 1,\n    \"category_id\": 1,\n    \"rating\": 5,\n    \"address\": \"Four Seasons Hotel\",\n    \"phone_number\": \"97144074100\",\n    \"prebooking_required\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8ec7dca5-c66c-41aa-8341-036476eb0dfb",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/search?keyword=bread",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"search"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "bread"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b690413a-48db-4f7f-b42a-1d38baa6848e",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\": 3.5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1da0031f-bb64-4b72-af82-0b81161acf22",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/categories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "49f2dcec-e6cb-4d2c-bbb0-32ea127f1eea",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/categories",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/categories/<id>/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2a52b14d-17fc-4699-8db9-fbc4ac1b2ed1",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/categories/2/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"categories",
+								"2",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cuisines",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c39cfba5-d3a3-4ba7-ad57-93b832ebb62d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/cuisines",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cuisines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cuisines/<id>/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6a54ca4a-9fb5-4367-a173-e861ba70ed00",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/cuisines/17/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cuisines",
+								"17",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/age-policies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "72989471-3f8f-4968-ab0b-d7639fe64d73",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/age-policies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"age-policies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/age-policies/<id>/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e5d97af3-0cc5-493d-9a2d-bbbf642088a7",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/age-policies/1/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"age-policies",
+								"1",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/locations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d2e0fcdd-0e9c-4d12-b755-7c279fe7a099",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/locations",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/locations/<id>/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe2c86d0-135d-4838-a290-318f0dafe488",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/locations/2/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"locations",
+								"2",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/<id>/notes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4d9047b4-ce94-4234-b855-8cabb72f59e3",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"note\": \"10% incentive per table booking. Call David directly 0556547767\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/2/notes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"2",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/notes/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d7e2e66-30f5-41c0-9d68-a6745276e674",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"note\": \"15% incentive\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/notes/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"notes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/notes/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8594dc36-af31-4fd3-9ea6-a0c276e4759c",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/notes/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"notes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "concierge agent",
+			"item": [
+				{
+					"name": "/restaurants-public",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9361d1c4-5f7b-4843-8680-1ae27c66e406",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"value contains restaurants array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.restaurants).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}//restaurants-public",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"",
+								"restaurants-public"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f30e0c2d-0ec4-4007-9af3-bf8432bd72ec",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16458a35-c937-4fff-9fd7-08f64898ac10",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a767c5a7-33e2-4b8c-a688-933fca816549",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Nusret\",\n    \"cuisine_id\": 5,\n    \"location_id\": 11,\n    \"age_policy_id\": 1,\n    \"category_id\": 1,\n    \"rating\": 5,\n    \"address\": \"Four Seasons Hotel\",\n    \"phone_number\": \"97144074100\",\n    \"prebooking_required\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fdbd11af-23c3-4c9d-ba68-7ef36e4efd07",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/search?keyword=bread",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"search"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "bread"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b30e9e6d-c2c5-4144-8dd6-884a3fd6c682",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\": 3.5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "262c26e9-0600-4e37-bc4e-782e288358a0",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/categories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "01236d4c-2471-472a-bf30-4d5fcb0fc2ec",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/categories",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/categories/<id>/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "89c9cb13-58fe-49e9-94ed-ce953b48d0d1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/categories/2/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"categories",
+								"2",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cuisines",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1d00fc7a-b69f-42da-a723-4a0d36bca021",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/cuisines",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cuisines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cuisines/<id>/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a395226f-5b36-4585-921b-fe9363b7089a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/cuisines/17/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cuisines",
+								"17",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/age-policies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f34d8c7c-450e-489c-b733-e091df992803",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/age-policies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"age-policies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/age-policies/<id>/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "44ac7545-43fc-488f-b694-cf1c8f5977d0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/age-policies/1/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"age-policies",
+								"1",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/locations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f0a789f0-8c19-4ac1-97bf-dc963a0b90c1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/locations",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/locations/<id>/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f0517bff-300f-4c7b-ba9c-9f6e19769e58",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/locations/2/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"locations",
+								"2",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/<id>/notes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "61040b00-fdf5-4476-b4a6-fd9f5e1c19af",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"note\": \"10% incentive per table booking. Call David directly 0556547767\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/2/notes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"2",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/notes/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "affc157b-773d-47f8-b84d-5f1bbe88de18",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"note\": \"15% incentive per table booking. Call Ahmed directly\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/notes/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"notes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/notes/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc8adbff-5e50-4b28-842d-8ae1459cb394",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/notes/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"notes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "has partial access",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlgyS1ZOLXUya1ZwT09fM1JCamxneCJ9.eyJpc3MiOiJodHRwczovL2VsbWEuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVmMDg0MGI4M2UwZGU4MDAxM2EyNjk2NSIsImF1ZCI6ImNvbmNpZXJnZV9hcHAiLCJpYXQiOjE1OTQ1NjU5MjEsImV4cCI6MTU5NDY1MjMyMSwiYXpwIjoiNGVwRkZPVU9FNHF2WjEzWGRHdDJPMFhzdkJzUFdtc0giLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImZ1bGwtYWNjZXNzOm5vdGVzIiwiZ2V0OnJlc3RhdXJhbnRzIl19.Spsb33hxd0gN1rM37ahWaRGLtIhagoOeiqFf69sq6OMkfZvMLrUMh-EMC-gIqHYSmIy1QQDzBNyQ0xQrvXGRPMR3-LqMwd1_X7jjtPJq4KwdhN9pnZH8fYDu702r-W1Tjr72vhts-cE_xF3YUW6GIcSKAYg54OErs657v22bwg8wlrzrXSVkeTg4zEONLT6qeWyFS2-u3HdiGH3YJ0tQ7r5rJW0TM3pCPz2I2mG4gwn8hiTp746R522EmM9XDOhPZ688-2899Qq7z35QBoGRagk3275_9DZh5X2w7aAFOcgAC9MiNuCdvz9g1hOvB3k02xNsKD0yZKMnEJdVC2w9jw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "479b925d-c3e4-4570-9174-8e7d3dc74541",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d82a9a2-f2c0-4434-8d9d-f03ec3a61df9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "chief concierge",
+			"item": [
+				{
+					"name": "/restaurants-public",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "08216320-4c28-4534-851e-1e81c8c6f9b5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"value contains restaurants array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.restaurants).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}//restaurants-public",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"",
+								"restaurants-public"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1788eb83-3611-4edd-97ed-0a108ca4ceea",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5bcf3867-304f-4e4e-a7be-99c300960fd0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4d18204-3546-430e-835f-e9a2f0868572",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Nusret\",\n    \"cuisine_id\": 5,\n    \"location_id\": 11,\n    \"age_policy_id\": 1,\n    \"category_id\": 1,\n    \"rating\": 5,\n    \"address\": \"Four Seasons Hotel\",\n    \"phone_number\": \"97144074100\",\n    \"prebooking_required\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b1739508-1921-4446-b037-1d29ad53ff86",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/search?keyword=bread",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"search"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "bread"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5e00e4ba-b90d-4dbc-a521-22feccfa537f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "56add275-df42-4883-9f30-e3b7122a9a26",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/20",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/categories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8864a9a8-8fbf-4809-b732-75b4f09246c9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/categories",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/categories/<id>/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6c934d56-3759-4457-b4f0-bb247944c61e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/categories/2/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"categories",
+								"2",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cuisines",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5c639d5c-9bf9-441b-8c72-b35ca18f4eaa",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/cuisines",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cuisines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cuisines/<id>/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6e8cada3-0da9-42d4-b6b0-2ccdc9a52bc7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/cuisines/17/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cuisines",
+								"17",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/age-policies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dfc9267c-c35b-42f7-b716-dd8412dbb8ea",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/age-policies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"age-policies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/age-policies/<id>/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e294ac5a-c229-462c-a10b-58b9301e6b10",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/age-policies/1/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"age-policies",
+								"1",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/locations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8cfd47ea-75ab-4ff7-9112-3055bcfdc977",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/locations",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/locations/<id>/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c57fc103-cfac-4647-9b1f-0e9a0695ecf0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/locations/2/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"locations",
+								"2",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/<id>/notes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "09e478c4-3d47-4d90-9a75-1b0093e7361e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"note\": \"for bar area booking is not required\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/3/notes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"3",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/notes/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c33daade-5863-434b-840b-f77fa45c01f2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"note\": \"15% incentive per table booking\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/notes/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"notes",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/notes/<id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "343ea34c-2725-40de-8b17-20935729bb84",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/notes/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"notes",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "has full access",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlgyS1ZOLXUya1ZwT09fM1JCamxneCJ9.eyJpc3MiOiJodHRwczovL2VsbWEuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlZDJhZDJiYmViNjg0MGM5Mzk1Yzc4ZCIsImF1ZCI6ImNvbmNpZXJnZV9hcHAiLCJpYXQiOjE1OTQ1NjU4NTcsImV4cCI6MTU5NDY1MjI1NywiYXpwIjoiNGVwRkZPVU9FNHF2WjEzWGRHdDJPMFhzdkJzUFdtc0giLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTpyZXN0YXVyYW50cyIsImZ1bGwtYWNjZXNzOm5vdGVzIiwiZ2V0OnJlc3RhdXJhbnRzIiwicGF0Y2g6cmVzdGF1cmFudHMiLCJwb3N0OnJlc3RhdXJhbnRzIl19.al_y_43Bl0s3u5l2GUsBZ1ZS_AeIIHXno63HUYt8z5vCdoMhnmI-lx_SxVVHWiFsEpVYkBe9Kug5n0ttJjTofl5aaL2L9uZ2a2ZGBn76rx8PTdj15zt2KWQtOaj9c_IPyHotyDk-7_KvC0XH7JG6zRUS-MBFt1XqMqnTHO7JiFQmHWjk1gzkz7BKvJi5LtNH_RBkRX_r-Vav2jQznakxLqup-YtJnFehqyaJVZHRuDGp4eMTJxJ-TgTDOxxEbXVXtrqQX_dvSen4ISrfjRwcp3QP2kVNxbsxWACZhHYLGnb0r7irou_C74rgu-pO5OsyPtdal2l6QkRQ0Z2vJBLC-A",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a4c746c4-b0af-424a-bb8c-8f2aeff11671",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "34ae9401-4b46-4523-b675-3e6d8532edb0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "17a932df-0c3e-407c-a8e7-3fb84642d463",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "be43b6d7-528d-4755-a635-0a1e0d6e7281",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "16cff5c0-f164-40c3-b950-b8173710539e",
+			"key": "host",
+			"value": "localhost:5000"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,449 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.2
+-- Dumped by pg_dump version 12.2
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: age_policy; Type: TABLE; Schema: public; Owner: jasurahmad
+--
+
+CREATE TABLE public.age_policy (
+    id integer NOT NULL,
+    age integer NOT NULL
+);
+
+
+ALTER TABLE public.age_policy OWNER TO jasurahmad;
+
+--
+-- Name: age_policy_id_seq; Type: SEQUENCE; Schema: public; Owner: jasurahmad
+--
+
+CREATE SEQUENCE public.age_policy_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.age_policy_id_seq OWNER TO jasurahmad;
+
+--
+-- Name: age_policy_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jasurahmad
+--
+
+ALTER SEQUENCE public.age_policy_id_seq OWNED BY public.age_policy.id;
+
+
+--
+-- Name: category; Type: TABLE; Schema: public; Owner: jasurahmad
+--
+
+CREATE TABLE public.category (
+    id integer NOT NULL,
+    name character varying(40) NOT NULL
+);
+
+
+ALTER TABLE public.category OWNER TO jasurahmad;
+
+--
+-- Name: category_id_seq; Type: SEQUENCE; Schema: public; Owner: jasurahmad
+--
+
+CREATE SEQUENCE public.category_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.category_id_seq OWNER TO jasurahmad;
+
+--
+-- Name: category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jasurahmad
+--
+
+ALTER SEQUENCE public.category_id_seq OWNED BY public.category.id;
+
+
+--
+-- Name: cuisine; Type: TABLE; Schema: public; Owner: jasurahmad
+--
+
+CREATE TABLE public.cuisine (
+    id integer NOT NULL,
+    name character varying(40) NOT NULL
+);
+
+
+ALTER TABLE public.cuisine OWNER TO jasurahmad;
+
+--
+-- Name: cuisine_id_seq; Type: SEQUENCE; Schema: public; Owner: jasurahmad
+--
+
+CREATE SEQUENCE public.cuisine_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cuisine_id_seq OWNER TO jasurahmad;
+
+--
+-- Name: cuisine_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jasurahmad
+--
+
+ALTER SEQUENCE public.cuisine_id_seq OWNED BY public.cuisine.id;
+
+
+--
+-- Name: location; Type: TABLE; Schema: public; Owner: jasurahmad
+--
+
+CREATE TABLE public.location (
+    id integer NOT NULL,
+    name character varying(60) NOT NULL
+);
+
+
+ALTER TABLE public.location OWNER TO jasurahmad;
+
+--
+-- Name: location_id_seq; Type: SEQUENCE; Schema: public; Owner: jasurahmad
+--
+
+CREATE SEQUENCE public.location_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.location_id_seq OWNER TO jasurahmad;
+
+--
+-- Name: location_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jasurahmad
+--
+
+ALTER SEQUENCE public.location_id_seq OWNED BY public.location.id;
+
+
+--
+-- Name: restaurant; Type: TABLE; Schema: public; Owner: jasurahmad
+--
+
+CREATE TABLE public.restaurant (
+    id integer NOT NULL,
+    name character varying(80) NOT NULL,
+    cuisine_id integer NOT NULL,
+    location_id integer NOT NULL,
+    age_policy_id integer NOT NULL,
+    category_id integer NOT NULL,
+    rating integer,
+    address character varying(120) NOT NULL,
+    phone_number character varying(30),
+    prebooking_required boolean NOT NULL
+);
+
+
+ALTER TABLE public.restaurant OWNER TO jasurahmad;
+
+--
+-- Name: restaurant_id_seq; Type: SEQUENCE; Schema: public; Owner: jasurahmad
+--
+
+CREATE SEQUENCE public.restaurant_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.restaurant_id_seq OWNER TO jasurahmad;
+
+--
+-- Name: restaurant_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jasurahmad
+--
+
+ALTER SEQUENCE public.restaurant_id_seq OWNED BY public.restaurant.id;
+
+
+--
+-- Name: age_policy id; Type: DEFAULT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.age_policy ALTER COLUMN id SET DEFAULT nextval('public.age_policy_id_seq'::regclass);
+
+
+--
+-- Name: category id; Type: DEFAULT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.category ALTER COLUMN id SET DEFAULT nextval('public.category_id_seq'::regclass);
+
+
+--
+-- Name: cuisine id; Type: DEFAULT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.cuisine ALTER COLUMN id SET DEFAULT nextval('public.cuisine_id_seq'::regclass);
+
+
+--
+-- Name: location id; Type: DEFAULT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.location ALTER COLUMN id SET DEFAULT nextval('public.location_id_seq'::regclass);
+
+
+--
+-- Name: restaurant id; Type: DEFAULT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.restaurant ALTER COLUMN id SET DEFAULT nextval('public.restaurant_id_seq'::regclass);
+
+
+--
+-- Data for Name: age_policy; Type: TABLE DATA; Schema: public; Owner: jasurahmad
+--
+
+COPY public.age_policy (id, age) FROM stdin;
+1	0
+2	10
+3	21
+\.
+
+
+--
+-- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: jasurahmad
+--
+
+COPY public.category (id, name) FROM stdin;
+1	Fine Dining
+2	Casual Dining
+3	Cafe
+4	Night Club
+5	Bars and Lounges
+\.
+
+
+--
+-- Data for Name: cuisine; Type: TABLE DATA; Schema: public; Owner: jasurahmad
+--
+
+COPY public.cuisine (id, name) FROM stdin;
+1	International
+2	Indian
+3	American
+4	Arabic
+5	Turkish
+6	Italian
+7	Spanish
+8	Lebanese
+9	Mediterranean
+10	British
+11	European
+12	Russian
+13	Chinese
+14	Korean
+15	Japanese
+16	Seafood
+17	Mexican
+18	French
+19	Asian
+20	Persian
+\.
+
+
+--
+-- Data for Name: location; Type: TABLE DATA; Schema: public; Owner: jasurahmad
+--
+
+COPY public.location (id, name) FROM stdin;
+1	JBR
+2	The Walk
+3	Dubai Marina
+4	JLT
+5	Mina Seyahi
+6	Palm Jumeirah
+7	Madinat Jumeirah
+8	Umm Suqeim
+9	Jumeirah 1
+10	Jumeirah 2
+11	Jumeirah 3
+12	Business Bay
+13	Downtown
+14	DIFC
+15	Al-Habtoor City
+16	World Trade Center
+17	Oud Metha
+18	Bur Dubai
+19	Deira
+20	Dubai Design District
+\.
+
+
+--
+-- Data for Name: restaurant; Type: TABLE DATA; Schema: public; Owner: jasurahmad
+--
+
+COPY public.restaurant (id, name, cuisine_id, location_id, age_policy_id, category_id, rating, address, phone_number, prebooking_required) FROM stdin;
+1	Saffron	20	2	1	3	3	Atlantis The Palm	97144260000	t
+2	Hakkasan	14	14	2	2	5	Atlantis The Palm	97144262626	t
+3	Billionaire Mansion	19	13	3	5	5	Taj Hotel	No phone number	t
+4	Ayamna	7	6	2	3	0	Atlantis The Palm	No phone number	f
+5	Nobu	12	7	2	2	5	Atlantis The Palm	97144262626	t
+6	Bread Street Kitchen	17	8	1	2	2	Atlantis The Palm	97144262626	t
+7	Al Mahara	17	9	2	2	5	Burj Al Arab hotel	97144555555	t
+\.
+
+
+--
+-- Name: age_policy_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jasurahmad
+--
+
+SELECT pg_catalog.setval('public.age_policy_id_seq', 9, true);
+
+
+--
+-- Name: category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jasurahmad
+--
+
+SELECT pg_catalog.setval('public.category_id_seq', 6, true);
+
+
+--
+-- Name: cuisine_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jasurahmad
+--
+
+SELECT pg_catalog.setval('public.cuisine_id_seq', 21, true);
+
+
+--
+-- Name: location_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jasurahmad
+--
+
+SELECT pg_catalog.setval('public.location_id_seq', 21, true);
+
+
+--
+-- Name: restaurant_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jasurahmad
+--
+
+SELECT pg_catalog.setval('public.restaurant_id_seq', 18, true);
+
+
+--
+-- Name: age_policy age_policy_pkey; Type: CONSTRAINT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.age_policy
+    ADD CONSTRAINT age_policy_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: category category_pkey; Type: CONSTRAINT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.category
+    ADD CONSTRAINT category_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cuisine cuisine_pkey; Type: CONSTRAINT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.cuisine
+    ADD CONSTRAINT cuisine_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: location location_pkey; Type: CONSTRAINT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.location
+    ADD CONSTRAINT location_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: restaurant restaurant_name_key; Type: CONSTRAINT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.restaurant
+    ADD CONSTRAINT restaurant_name_key UNIQUE (name);
+
+
+--
+-- Name: restaurant restaurant_pkey; Type: CONSTRAINT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.restaurant
+    ADD CONSTRAINT restaurant_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: restaurant restaurant_age_policy_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.restaurant
+    ADD CONSTRAINT restaurant_age_policy_id_fkey FOREIGN KEY (age_policy_id) REFERENCES public.age_policy(id);
+
+
+--
+-- Name: restaurant restaurant_category_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.restaurant
+    ADD CONSTRAINT restaurant_category_id_fkey FOREIGN KEY (category_id) REFERENCES public.category(id);
+
+
+--
+-- Name: restaurant restaurant_cuisine_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.restaurant
+    ADD CONSTRAINT restaurant_cuisine_id_fkey FOREIGN KEY (cuisine_id) REFERENCES public.cuisine(id);
+
+
+--
+-- Name: restaurant restaurant_location_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: jasurahmad
+--
+
+ALTER TABLE ONLY public.restaurant
+    ADD CONSTRAINT restaurant_location_id_fkey FOREIGN KEY (location_id) REFERENCES public.location(id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
